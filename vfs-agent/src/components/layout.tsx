@@ -16,9 +16,11 @@ interface LayoutState {
   editorWidth: number
   chatWidth: number
   terminalHeight: number
+  previewWidth: number
   showExplorer: boolean
   showChat: boolean
   showTerminal: boolean
+  showPreview: boolean
 }
 
 const Resizer = ({ vertical, onMouseDown }: { vertical: boolean; onMouseDown: (e: React.MouseEvent) => void }) => (
@@ -37,15 +39,49 @@ const Resizer = ({ vertical, onMouseDown }: { vertical: boolean; onMouseDown: (e
   </div>
 )
 
+function PreviewPanel({ activeFile }: { activeFile: VFSNode | null }) {
+  if (!activeFile || activeFile.type !== 'file') {
+    return (
+      <div className="flex items-center justify-center h-full text-muted-foreground">
+        <p className="text-center">Select an HTML file to preview</p>
+      </div>
+    )
+  }
+
+  const isHtml = activeFile.name.endsWith('.html') || activeFile.name.endsWith('.htm')
+  
+  if (!isHtml) {
+    return (
+      <div className="flex items-center justify-center h-full text-muted-foreground">
+        <p className="text-center">Preview available for HTML files only</p>
+      </div>
+    )
+  }
+
+  const content = activeFile.content || ''
+  const blob = new Blob([content], { type: 'text/html' })
+  const url = URL.createObjectURL(blob)
+
+  return (
+    <iframe
+      src={url}
+      className="w-full h-full border-0"
+      sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"
+    />
+  )
+}
+
 export function MainLayout() {
   const [layout, setLayout] = useState<LayoutState>({
     explorerWidth: 280,
     editorWidth: 0,
     chatWidth: 320,
     terminalHeight: 200,
+    previewWidth: 400,
     showExplorer: true,
     showChat: true,
     showTerminal: true,
+    showPreview: false,
   })
   const { activeFileId, openFiles, closeFile, setActiveFile, root } = useVFSStore()
   const activeFile = activeFileId ? openFiles.get(activeFileId) || null : null
@@ -103,6 +139,24 @@ export function MainLayout() {
     document.addEventListener('mousemove', handleMove)
     document.addEventListener('mouseup', handleUp)
   }, [layout.terminalHeight])
+
+  const handlePreviewResize = useCallback((e: React.MouseEvent) => {
+    const startX = e.clientX
+    const startWidth = layout.previewWidth
+    
+    const handleMove = (e: MouseEvent) => {
+      const newWidth = Math.max(300, Math.min(800, startWidth - (e.clientX - startX)))
+      setLayout(prev => ({ ...prev, previewWidth: newWidth }))
+    }
+    
+    const handleUp = () => {
+      document.removeEventListener('mousemove', handleMove)
+      document.removeEventListener('mouseup', handleUp)
+    }
+    
+    document.addEventListener('mousemove', handleMove)
+    document.addEventListener('mouseup', handleUp)
+  }, [layout.previewWidth])
 
   return (
     <div className="flex h-[calc(100vh-60px)] bg-background">
@@ -173,6 +227,27 @@ export function MainLayout() {
           style={{ width: layout.chatWidth, minWidth: 250, maxWidth: 500 }}
         >
           <AgentChat />
+        </div>
+      )}
+
+      {/* Preview Panel Resizer */}
+      {layout.showPreview && <Resizer vertical onMouseDown={handlePreviewResize} />}
+
+      {/* Preview Panel */}
+      {layout.showPreview && (
+        <div
+          className="flex flex-col bg-card border-l"
+          style={{ width: layout.previewWidth, minWidth: 300, maxWidth: 800 }}
+        >
+          <div className="flex items-center justify-between p-2 border-b bg-muted/50">
+            <h3 className="text-sm font-medium">Preview</h3>
+            <Button variant="ghost" size="icon" onClick={() => setLayout(prev => ({ ...prev, showPreview: false }))}>
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+          <div className="flex-1 relative">
+            <PreviewPanel activeFile={activeFile} />
+          </div>
         </div>
       )}
     </div>
