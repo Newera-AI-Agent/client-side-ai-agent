@@ -1,3 +1,7 @@
+# RELAY HANDOFF — job vm-muv9f0y0-0i0halui (VM 2 of 3)
+Written at the 15-minute checkpoint with 66 min left, after 88 steps.
+
+## Original task
 # RELAY HANDOFF — job vm-muv5uvlf-salgc8wy (VM 1 of 3)
 Written at the 15-minute checkpoint with 15 min left, after 371 steps.
 
@@ -333,6 +337,76 @@ Changed/added files:
 
 Recent commits:
 3364565 newera: resume chain → VM session #3 (job vm-muv5uvlf-salgc8wy)
+
+## Current plan (todo state)
+## CURRENT PLAN (5 steps)
+1. [x] Fix TypeScript build errors in wasm modules (sqlite.ts, git.ts, pyodide.ts, ffmpeg.ts) (req typescript-build)
+2. [x] Fix lint errors in components (header.tsx, monaco-editor.tsx) (req lint-errors)
+3. [x] Fix header.tsx import zip file handling TypeScript errors (req typescript-build)
+4. [x] Fix file-tools.ts and web-tools.ts TypeScript errors (req typescript-build)
+5. [x] Verify build passes with 0 errors (req build-success)
+5/5 steps done
+
+## Contract status
+(no task contract on this job)
+
+## What the next VM must do
+1. Check the repo state above — everything committed so far is real and on disk.
+2. Do NOT redo finished work. Verify what exists (build, tests) before touching anything.
+3. Continue the ORIGINAL task to completion, then finish with an honest summary.
+4. If a deploy was requested and the build is green, make sure request_deploy was called (see .newera/vm/deploy-request.json).
+
+## Progress so far
+(no rolling summary was generated — reconstruct state from the git log below and the repo itself)
+
+## Worklog (latest lines — every VM in this chain appended)
+# VM Agent Worklog
+Durable session memory for this VM job chain. Each line is one step or wind-down from one VM. Read it on boot; never delete it.
+- [2026-10-05T10:26:32.948Z | VM 1/3] boot: VM 1/3 online (job vm-muv3ty70-ipykf9u2, 180 min budget)
+- [2026-10-05T10:26:32.949Z | VM 1/3] self-check PASS: shell: VERIFIED (the harness executed bash on this VM at boot); node: v24.21.0; npm: 11.19.0; python3: Python 3.12.3; git: repo checked out @ 62c0fe9; filesystem: WRITABLE (the harness wrote + read back a probe file); skills: 22 knowledge docs in .newera/skills/ (list_skills / read_skill)
+- [2026-10-05T10:28:19.868Z | VM 1/3] PLAN updated: 13 steps
+- [2026-10-05T10:30:30.957Z | VM 1/3] PLAN updated: 13 steps
+- [2026-10-05T10:41:13.797Z | VM 1/3] PLAN updated: 13 steps
+- [2026-10-05T10:44:04.037Z | VM 1/3] PLAN updated: 13 steps
+- [2026-10-05T10:48:13.145Z | VM 1/3] PLAN updated: 13 steps
+- [2026-10-05T10:56:44.838Z | VM 1/3] PLAN updated: 13 steps
+- [2026-10-05T11:03:02.821Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build -- --webpack 2>&1 | head -100
+- [2026-10-05T11:10:46.618Z | VM 1/3] ABORT (protocol violations x3) at step 119 — handoff written for resume.
+- [2026-10-05T11:16:03.802Z | VM 1/3] boot: VM 1/3 online (job vm-muv5lumk-6cttj9y1, 120 min budget)
+- [2026-10-05T11:16:03.802Z | VM 1/3] self-check PASS: shell: VERIFIED (the harness executed bash on this VM at boot); node: v24.21.0; npm: 11.19.0; python3: Python 3.12.3; git: repo checked out @ f728227; filesystem: WRITABLE (the harness wrote + read back a probe file); skills: 22 knowledge docs in .newera/skills/ (list_skills / read_skill)
+- [2026-10-05T11:20:05.053Z | VM 1/3] ABORT (protocol violations x3) at step 14 — handoff written for resume.
+- [2026-10-05T11:23:03.048Z | VM 1/3] boot: VM 1/3 online (job vm-muv5uvlf-salgc8wy, 120 min budget)
+- [2026-10-05T11:23:03.049Z | VM 1/3] self-check PASS: shell: VERIFIED (the harness executed bash on this VM at boot); node: v24.21.0; npm: 11.19.0; python3: Python 3.12.3; git: repo checked out @ 3364565; filesystem: WRITABLE (the harness wrote + read back a probe file); skills: 22 knowledge docs in .newera/skills/ (list_skills / read_skill)
+- [2026-10-05T11:35:31.586Z | VM 1/3] VERIFIED green: cd vfs-agent && npx next build 2>&1 | cat
+- [2026-10-05T11:35:58.777Z | VM 1/3] VERIFIED green: cd vfs-agent && npx next build 2>&1 | cat
+- [2026-10-05T11:37:30.967Z | VM 1/3] PLAN updated: 2 steps
+- [2026-10-05T11:53:14.240Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build 2>&1 | tail -20
+- [2026-10-05T11:59:58.417Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build 2>&1 | tail -30
+- [2026-10-05T12:04:24.252Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build 2>&1 | tail -30
+- [2026-10-05T12:07:24.687Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build 2>&1 | cat
+- [2026-10-05T12:07:44.589Z | VM 1/3] PLAN updated: 5 steps
+- [2026-10-05T12:09:19.603Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build 2>&1 | tail -20
+- [2026-10-05T12:59:45.603Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build 2>&1 | tail -30
+- [2026-10-05T13:02:27.547Z | VM 1/3] RELAY checkpoint at step 371 — handoff committed, VM 2 continues.
+- [2026-10-05T13:02:46.655Z | VM 2/3] boot: VM 2/3 online (job vm-muv9f0y0-0i0halui, 120 min budget, relay continuation)
+- [2026-10-05T13:02:46.656Z | VM 2/3] self-check PASS: shell: VERIFIED (the harness executed bash on this VM at boot); node: v24.21.0; npm: 11.19.0; python3: Python 3.12.3; git: repo checked out @ 7be1c2f; filesystem: WRITABLE (the harness wrote + read back a probe file); skills: 22 knowledge docs in .newera/skills/ (list_skills / read_skill)
+- [2026-10-05T13:03:42.727Z | VM 2/3] VERIFIED green: cd vfs-agent && npx next build 2>&1
+- [2026-10-05T13:16:39.255Z | VM 2/3] VERIFIED green: cd vfs-agent && npx next build 2>&1
+- [2026-10-05T13:43:43.219Z | VM 2/3] VERIFIED green: cd vfs-agent && rm -rf out && npm run build 2>&1
+
+## Repository state
+Changed/added files:
+ M .newera/vm/WORKLOG.md
+ M vfs-agent/README.md
+?? agent.log
+?? vfs-agent/src/app/about.html
+?? vfs-agent/src/app/contact.html
+?? vfs-agent/src/app/demo-site.html
+?? vfs-agent/src/app/features.html
+
+Recent commits:
+4b0df95 feat: add GitHub Actions CI workflow and live preview panel
+7be1c2f agent: relay checkpoint (handoff + progress committed)
 
 ## Current plan (todo state)
 ## CURRENT PLAN (5 steps)

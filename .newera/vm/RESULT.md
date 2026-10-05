@@ -1,3 +1,3 @@
 # VM Agent Result
 
-RELAYED to a fresh VM (relay 1 of 2) after 371 steps. All work is committed; the handoff brief is .newera/vm/handoff.md.
+ABORTED: model kept replying outside the JSON protocol after 88 steps (handoff committed for resume).

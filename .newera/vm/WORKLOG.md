@@ -27,3 +27,9 @@ Durable session memory for this VM job chain. Each line is one step or wind-down
 - [2026-10-05T12:09:19.603Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build 2>&1 | tail -20
 - [2026-10-05T12:59:45.603Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build 2>&1 | tail -30
 - [2026-10-05T13:02:27.547Z | VM 1/3] RELAY checkpoint at step 371 — handoff committed, VM 2 continues.
+- [2026-10-05T13:02:46.655Z | VM 2/3] boot: VM 2/3 online (job vm-muv9f0y0-0i0halui, 120 min budget, relay continuation)
+- [2026-10-05T13:02:46.656Z | VM 2/3] self-check PASS: shell: VERIFIED (the harness executed bash on this VM at boot); node: v24.21.0; npm: 11.19.0; python3: Python 3.12.3; git: repo checked out @ 7be1c2f; filesystem: WRITABLE (the harness wrote + read back a probe file); skills: 22 knowledge docs in .newera/skills/ (list_skills / read_skill)
+- [2026-10-05T13:03:42.727Z | VM 2/3] VERIFIED green: cd vfs-agent && npx next build 2>&1
+- [2026-10-05T13:16:39.255Z | VM 2/3] VERIFIED green: cd vfs-agent && npx next build 2>&1
+- [2026-10-05T13:43:43.219Z | VM 2/3] VERIFIED green: cd vfs-agent && rm -rf out && npm run build 2>&1
+- [2026-10-05T13:51:07.992Z | VM 2/3] ABORT (protocol violations x3) at step 88 — handoff written for resume.

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - VFS Agent Demo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; text-align: center; }
+        nav { background: #f8f9fa; padding: 1rem; display: flex; justify-content: center; gap: 2rem; border-bottom: 1px solid #e9ecef; }
+        nav a { color: #667eea; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: #764ba2; }
+        main { max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .card { background: white; border: 1px solid #e9ecef; border-radius: 8px; padding: 1.5rem; margin: 1rem 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .card h2 { color: #667eea; margin-bottom: 0.5rem; }
+        .tech-stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .tech { padding: 1rem; background: #f8f9fa; border-radius: 8px; text-align: center; }
+        .tech h3 { color: #667eea; margin-bottom: 0.5rem; }
+        .tech ul { text-align: left; padding-left: 1.5rem; }
+        .architecture { background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin: 1rem 0; }
+        .architecture h3 { color: #667eea; margin-bottom: 1rem; }
+        .architecture pre { background: #2d2d2d; color: #f8f8f2; padding: 1rem; border-radius: 4px; overflow-x: auto; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>About VFS Agent</h1>
+        <p>The architecture behind the browser-based AI agent</p>
+    </header>
+    
+    <nav>
+        <a href="demo-site.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="features.html">Features</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <main>
+        <div class="card">
+            <h2>What is VFS Agent?</h2>
+            <p>VFS Agent is a fully client-side AI agent that runs entirely in your browser. It combines a virtual file system with powerful WASM-based tools to give you a complete development environment without any server.</p>
+            <p>All computation happens locally - your code, files, and data never leave your machine.</p>
+        </div>
+        
+        <div class="card">
+            <h2>Technology Stack</h2>
+            <div class="tech-stack">
+                <div class="tech">
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li>Next.js 16 (App Router)</li>
+                        <li>React 19</li>
+                        <li>TypeScript (strict)</li>
+                        <li>Tailwind CSS 4</li>
+                    </ul>
+                </div>
+                <div class="tech">
+                    <h3>Runtime</h3>
+                    <ul>
+                        <li>Pyodide (Python WASM)</li>
+                        <li>sql.js (SQLite WASM)</li>
+                        <li>FFmpeg.wasm</li>
+                        <li>isomorphic-git</li>
+                    </ul>
+                </div>
+                <div class="tech">
+                    <h3>Storage</h3>
+                    <ul>
+                        <li>IndexedDB (idb)</li>
+                        <li>localStorage (Zustand)</li>
+                        <li>In-memory VFS</li>
+                    </ul>
+                </div>
+                <div class="tech">
+                    <h3>Editor</h3>
+                    <ul>
+                        <li>Monaco Editor</li>
+                        <li>Syntax highlighting</li>
+                        <li>TypeScript support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Architecture Overview</h2>
+            <div class="architecture">
+                <h3>ReAct Agent Loop</h3>
+                <pre>┌─────────────────┐
+│  User Input    │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Agent Loop    │
+│  (Think/Act)   │
+└────────┬────────┘
+         │
+    ┌────┴────┐
+    ▼         ▼
+┌───────┐ ┌─────────┐
+│ Tools │ │  VFS   │
+│Registry│ │  Store │
+└───────┘ └─────────┘</pre>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Privacy First</h2>
+            <p>Everything runs in your browser:</p>
+            <ul style="padding-left: 1.5rem;">
+                <li>No API keys required for local tools</li>
+                <li>Files stored in IndexedDB (your browser)</li>
+                <li>Code executes in WASM sandboxes</li>
+                <li>No telemetry or tracking</li>
+                <li>Works offline after initial load</li>
+            </ul>
+        </div>
+    </main>
+    
+    <footer style="text-align: center; padding: 2rem; color: #6c757d; border-top: 1px solid #e9ecef; margin-top: 2rem;">
+        <p>VFS Agent Demo - Built with Next.js 16 + React 19</p>
+    </footer>
+</body>
+</html>

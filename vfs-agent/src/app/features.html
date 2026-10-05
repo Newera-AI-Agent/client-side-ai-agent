@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - VFS Agent Demo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; text-align: center; }
+        nav { background: #f8f9fa; padding: 1rem; display: flex; justify-content: center; gap: 2rem; border-bottom: 1px solid #e9ecef; }
+        nav a { color: #667eea; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: #764ba2; }
+        main { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .card { background: white; border: 1px solid #e9ecef; border-radius: 8px; padding: 1.5rem; margin: 1rem 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .card h2 { color: #667eea; margin-bottom: 1rem; }
+        .card h3 { color: #495057; margin: 1rem 0 0.5rem; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+        .feature-item { padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea; }
+        .feature-item h4 { color: #667eea; margin-bottom: 0.5rem; }
+        .feature-item p { color: #6c757d; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 1rem; border-radius: 4px; overflow-x: auto; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.85rem; margin: 1rem 0; }
+        .code-block .keyword { color: #ff79c6; }
+        .code-block .string { color: #f1fa8c; }
+        .code-block .comment { color: #6272a4; }
+        .badge { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin: 0.25rem; }
+        .badge-wasm { background: #e0f2fe; color: #0369a1; }
+        .badge-vfs { background: #fef3c7; color: #92400e; }
+        .badge-agent { background: #fce7f3; color: #9d174d; }
+        .badge-editor { background: #dcfce7; color: #166534; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #e9ecef; }
+        th { background: #f8f9fa; color: #495057; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Features</h1>
+        <p>Deep dive into VFS Agent capabilities</p>
+    </header>
+    
+    <nav>
+        <a href="demo-site.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="features.html">Features</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <main>
+        <div class="card">
+            <h2>Core Capabilities</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4><span class="badge badge-vfs">VFS</span> Virtual File System</h4>
+                    <p>Full CRUD operations with directory trees, file metadata, and in-memory performance.</p>
+                </div>
+                <div class="feature-item">
+                    <h4><span class="badge badge-vfs">Persistence</span> IndexedDB + localStorage</h4>
+                    <p>Automatic backup to IndexedDB with Zustand persist middleware for instant reload.</p>
+                </div>
+                <div class="feature-item">
+                    <h4><span class="badge badge-agent">Agent</span> ReAct Loop</h4>
+                    <p>Reasoning + Acting cycle with tool registry, streaming responses, and error recovery.</p>
+                </div>
+                <div class="feature-item">
+                    <h4><span class="badge badge-agent">Tools</span> 15+ Built-in Tools</h4>
+                    <p>File ops, code execution, Git, web search, image generation, and more.</p>
+                </div>
+                <div class="feature-item">
+                    <h4><span class="badge badge-wasm">WASM</span> Pyodide Python</h4>
+                    <p>Full Python 3.12 with NumPy, Pandas, Matplotlib, and PyPI package installation.</p>
+                </div>
+                <div class="feature-item">
+                    <h4><span class="badge badge-wasm">WASM</span> SQLite (sql.js)</h4>
+                    <p>Complete SQLite engine in browser with import/export of database files.</p>
+                </div>
+                <div class="feature-item">
+                    <h4><span class="badge badge-wasm">WASM</span> FFmpeg</h4>
+                    <p>Video/audio transcoding, format conversion, and media processing.</p>
+                </div>
+                <div class="feature-item">
+                    <h4><span class="badge badge-wasm">WASM</span> Git</h4>
+                    <p>Full Git operations: init, add, commit, log, diff, branch, status.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Developer Experience</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4><span class="badge badge-editor">Editor</span> Monaco Editor</h4>
+                    <p>VS Code's editor in-browser with IntelliSense, syntax highlighting, and themes.</p>
+                </div>
+                <div class="feature-item">
+                    <h4><span class="badge badge-editor">UI</span> Split-pane Layout</h4>
+                    <p>Resizable panels for explorer, editor, chat, terminal, and preview.</p>
+                </div>
+                <div class="feature-item">
+                    <h4><span class="badge badge-editor">Preview</span> Live HTML Preview</h4>
+                    <p>Instant iframe preview with sandbox for HTML/CSS/JS files.</p>
+                </div>
+                <div class="feature-item">
+                    <h4><span class="badge badge-editor">Theme</span> Dark/Light Mode</h4>
+                    <p>System-aware theme with localStorage persistence.</p>
+                </div>
+                <div class="feature-item">
+                    <h4><span class="badge badge-vfs">Import/Export</span> ZIP Support</h4>
+                    <p>Drag-drop ZIP import/export for project portability.</p>
+                </div>
+                <div class="feature-item">
+                    <h4><span class="badge badge-editor">Terminal</span> Integrated Terminal</h4>
+                    <p>Command output panel with history, copy, and maximize.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Example: Python Data Analysis</h2>
+            <p>Run Python with NumPy and Pandas directly in the browser:</p>
+            <div class="code-block"><span class="keyword">import</span> numpy <span class="keyword">as</span> np
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># Create sample data</span>
+data = {
+    <span class="string">'product'</span>: [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>],
+    <span class="string">'sales'</span>: [150, 230, 180, 310],
+    <span class="string">'region'</span>: [<span class="string">'North'</span>, <span class="string">'South'</span>, <span class="string">'East'</span>, <span class="string">'West'</span>]
+}
+df = pd.DataFrame(data)
+
+<span class="comment"># Analyze</span>
+print(df.describe())
+print(<span class="string">"Total sales:"</span>, df[<span class="string">'sales'</span>].sum())</div>
+        </div>
+        
+        <div class="card">
+            <h2>Example: SQLite Database</h2>
+            <p>Create and query databases entirely in-browser:</p>
+            <div class="code-block"><span class="comment">-- Initialize database</span>
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+<span class="comment">-- Insert data</span>
+INSERT INTO users (name, email) VALUES 
+    (<span class="string">'Alice'</span>, <span class="string">'alice@example.com'</span>),
+    (<span class="string">'Bob'</span>, <span class="string">'bob@example.com'</span>);
+
+<span class="comment">-- Query</span>
+SELECT * FROM users WHERE created_at > datetime(<span class="string">'now'</span>, <span class="string">'-1 day'</span>);</div>
+        </div>
+        
+        <div class="card">
+            <h2>Tool Comparison</h2>
+            <table>
+                <thead>
+                    <tr><th>Tool</th><th>Runtime</th><th>Use Case</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>run_python</td><td>Pyodide WASM</td><td>Data science, ML, scripting</td></tr>
+                    <tr><td>run_sql</td><td>sql.js WASM</td><td>Relational queries, analytics</td></tr>
+                    <tr><td>run_ffmpeg</td><td>FFmpeg.wasm</td><td>Media processing, transcoding</td></tr>
+                    <tr><td>git_*</td><td>isomorphic-git</td><td>Version control, collaboration</td></tr>
+                    <tr><td>web_search</td><td>Fetch API</td><td>Research, fact-checking</td></tr>
+                    <tr><td>web_fetch</td><td>Fetch API</td><td>Scraping, API integration</td></tr>
+                    <tr><td>generate_image</td><td>Control plane</td><td>Asset creation, diagrams</td></tr>
+                    <tr><td>file_*</td><td>VFS (JS)</td><td>File management</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    
+    <footer style="text-align: center; padding: 2rem; color: #6c757d; border-top: 1px solid #e9ecef; margin-top: 2rem;">
+        <p>VFS Agent Demo - Features &hearts; Next.js 16 + React 19</p>
+    </footer>
+</body>
+</html>
