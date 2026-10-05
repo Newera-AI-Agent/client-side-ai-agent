@@ -1,3 +1,3 @@
 # VM Agent Result
 
-ABORTED: model kept replying outside the JSON protocol after 119 steps (handoff committed for resume).
+ABORTED: model kept replying outside the JSON protocol after 14 steps (handoff committed for resume).

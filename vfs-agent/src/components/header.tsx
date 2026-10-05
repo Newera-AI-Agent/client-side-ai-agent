@@ -117,7 +117,7 @@ export function Header() {
         return node
       }
       
-      const vfsRoot = buildVFS(content)
+      const vfsRoot = await buildVFS(content)
       importVFS(vfsRoot)
       await saveToDB()
       setShowImport(false)
