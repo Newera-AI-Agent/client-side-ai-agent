@@ -36,7 +36,7 @@ function FileTree({ node, depth = 0, onSelect, onContextMenu }: FileTreeProps) {
     if (node.type === 'directory') {
       setIsExpanded(!isExpanded)
     } else {
-      onSelect?.(node.path)
+      onSelect?.(node)
     }
   }
 
@@ -158,7 +158,7 @@ export function VFSExplorer() {
       <div className="flex-1 overflow-auto p-2">
         <FileTree
           node={root}
-          onSelect={openFile}
+          onSelect={(node) => openFile(node.path)}
           onContextMenu={handleContextMenu}
         />
       </div>

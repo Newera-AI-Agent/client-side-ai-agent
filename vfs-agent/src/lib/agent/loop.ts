@@ -110,9 +110,9 @@ export class Agent {
     });
   }
 
-  private parseTask(task: string): Array<{ type: 'thought' | 'action'; content: string; toolName?: string; toolArgs?: Record<string, any> }> {
+  private parseTask(task: string): Array<{ type: 'thought' | 'action'; content: string; toolName?: string; toolArgs?: Record<string, unknown> }> {
     // Simple task parser for demo - in production this would be LLM-driven
-    const steps: Array<{ type: 'thought' | 'action'; content: string; toolName?: string; toolArgs?: Record<string, any> }> = [];
+    const steps: Array<{ type: 'thought' | 'action'; content: string; toolName?: string; toolArgs?: Record<string, unknown> }> = [];
     
     steps.push({ type: 'thought', content: `Analyzing task: ${task}` });
     

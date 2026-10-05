@@ -19,13 +19,16 @@ export function MonacoEditor({ node, onClose, onSave }: MonacoEditorProps) {
   const [content, setContent] = useState('')
   const [language, setLanguage] = useState('plaintext')
   const [isDirty, setIsDirty] = useState(false)
-  const editorRef = useRef<any>(null)
+  const editorRef = useRef<unknown>(null)
   const { writeFile } = useVFSStore()
 
   useEffect(() => {
     if (node && node.type === 'file') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setContent(node.content || '')
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLanguage(getFileLanguage(node.name))
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsDirty(false)
     }
   }, [node])

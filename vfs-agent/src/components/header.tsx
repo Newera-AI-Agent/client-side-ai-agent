@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from 'react'
 import { useVFSStore } from '@/lib/vfs/store'
+import { VFSNode } from '@/lib/vfs/types'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
@@ -25,9 +26,11 @@ export function Header() {
   React.useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
     if (savedTheme) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTheme(savedTheme)
       document.documentElement.classList.toggle('dark', savedTheme === 'dark')
     } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTheme('dark')
       document.documentElement.classList.add('dark')
     }
@@ -38,7 +41,7 @@ export function Header() {
       const vfs = exportVFS()
       const zip = new JSZip()
       
-      function addNodesToZip(node: any, prefix = '') {
+      function addNodesToZip(node: VFSNode, prefix = '') {
         const path = prefix ? `${prefix}/${node.name}` : node.name
         if (node.type === 'file') {
           zip.file(path, node.content || '')
@@ -63,8 +66,8 @@ export function Header() {
       const zip = new JSZip()
       const content = await zip.loadAsync(file)
       
-      async function buildVFS(zip: any, path = ''): Promise<any> {
-        const node: any = {
+      async function buildVFS(zip: JSZip, path = ''): Promise<VFSNode> {
+        const node: VFSNode = {
           id: crypto.randomUUID(),
           name: path.split('/').pop() || 'root',
           path: path || '/',
@@ -79,11 +82,12 @@ export function Header() {
           if (file.dir) continue
           const relativePath = path ? name.replace(path + '/', '') : name
           const parts = relativePath.split('/')
-          let current = node
+          let current: VFSNode = node
           
           for (let i = 0; i < parts.length - 1; i++) {
             const part = parts[i]
-            let child = current.children.find((c: any) => c.name === part)
+            if (!current.children) current.children = []
+            let child = current.children.find((c: VFSNode) => c.name === part)
             if (!child) {
               child = {
                 id: crypto.randomUUID(),
@@ -101,7 +105,8 @@ export function Header() {
           }
           
           const fileName = parts[parts.length - 1]
-          const fileContent = await file.async('text')
+          const fileContent: string = await file.async('text')
+          if (!current.children) current.children = []
           current.children.push({
             id: crypto.randomUUID(),
             name: fileName,

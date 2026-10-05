@@ -1,17 +1,19 @@
+export interface ToolParameters {
+  type: 'object';
+  properties: Record<string, unknown>;
+  required: string[];
+}
+
 export interface Tool {
   name: string;
   description: string;
-  parameters: {
-    type: 'object';
-    properties: Record<string, any>;
-    required: string[];
-  };
-  execute: (args: Record<string, any>) => Promise<ToolResult>;
+  parameters: ToolParameters;
+  execute: (args: Record<string, unknown>) => Promise<ToolResult>;
 }
 
 export interface ToolResult {
   success: boolean;
-  output?: any;
+  output?: unknown;
   error?: string;
 }
 
@@ -19,7 +21,7 @@ export interface AgentStep {
   type: 'thought' | 'action' | 'observation';
   content: string;
   toolName?: string;
-  toolArgs?: Record<string, any>;
+  toolArgs?: Record<string, unknown>;
   timestamp: number;
 }
 
@@ -35,5 +37,5 @@ export interface ToolRegistry {
   unregister: (name: string) => void;
   get: (name: string) => Tool | undefined;
   getAll: () => Tool[];
-  execute: (name: string, args: Record<string, any>) => Promise<ToolResult>;
+  execute: (name: string, args: Record<string, unknown>) => Promise<ToolResult>;
 }

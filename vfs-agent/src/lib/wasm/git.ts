@@ -15,7 +15,7 @@ export const gitInitTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { path = '/', defaultBranch = 'main' } = args;
+      const { path = '/', defaultBranch = 'main' } = args as { path?: string; defaultBranch?: string };
       await git.init({ fs, dir: path, defaultBranch });
       return { success: true, output: `Git repository initialized at ${path}` };
     } catch (err) {
@@ -37,7 +37,7 @@ export const gitAddTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { path, filepath } = args;
+      const { path, filepath } = args as { path: string; filepath: string };
       await git.add({ fs, dir: path, filepath });
       return { success: true, output: `Added ${filepath} to staging` };
     } catch (err) {
@@ -67,7 +67,7 @@ export const gitCommitTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { path, message, author } = args;
+      const { path, message, author } = args as { path: string; message: string; author: { name: string; email: string } };
       const sha = await git.commit({ fs, dir: path, message, author });
       return { success: true, output: `Commit created: ${sha}` };
     } catch (err) {
@@ -89,7 +89,7 @@ export const gitLogTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { path, depth = 10 } = args;
+      const { path, depth = 10 } = args as { path: string; depth?: number };
       const commits = await git.log({ fs, dir: path, depth });
       return { success: true, output: commits };
     } catch (err) {
@@ -100,7 +100,7 @@ export const gitLogTool: Tool = {
 
 export const gitDiffTool: Tool = {
   name: 'git_diff',
-  description: 'Show Git diff',
+  description: 'Show Git diff (compares working tree with HEAD)',
   parameters: {
     type: 'object',
     properties: {
@@ -111,9 +111,37 @@ export const gitDiffTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { path, filepath } = args;
-      const diff = await git.diff({ fs, dir: path, filepath });
-      return { success: true, output: diff };
+      const { path, filepath } = args as { path: string; filepath?: string };
+      // Use statusMatrix to get file statuses, then show diffs
+      const status = await git.statusMatrix({ fs, dir: path });
+      let output = '';
+      for (const [file, head, workdir, stage] of status) {
+        if (filepath && file !== filepath) continue;
+        if (workdir !== 1) { // 1 = identical to HEAD
+          const headContent = head ? await fs.readFile(file) : '';
+          const workdirContent = workdir ? await fs.readFile(file) : '(deleted)';
+          output += `--- a/${file}\n+++ b/${file}\n`;
+          if (headContent && workdirContent !== '(deleted)') {
+            // Simple line-by-line diff
+            const headLines = headContent.split('\n');
+            const workdirLines = workdirContent.split('\n');
+            const maxLen = Math.max(headLines.length, workdirLines.length);
+            for (let i = 0; i < maxLen; i++) {
+              const h = headLines[i];
+              const w = workdirLines[i];
+              if (h !== w) {
+                if (h !== undefined) output += `- ${h}\n`;
+                if (w !== undefined) output += `+ ${w}\n`;
+              }
+            }
+          } else if (!headContent && workdirContent !== '(deleted)') {
+            output += `+ ${workdirContent}\n`;
+          } else if (headContent && workdirContent === '(deleted)') {
+            output += `- ${headContent}\n`;
+          }
+        }
+      }
+      return { success: true, output: output || 'No changes' };
     } catch (err) {
       return { success: false, error: err instanceof Error ? err.message : 'Git diff failed' };
     }
@@ -135,10 +163,10 @@ export const gitBranchTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { path, action, branch, checkout = false } = args;
+      const { path, action, branch, checkout = false } = args as { path: string; action: string; branch?: string; checkout?: boolean };
       
       if (action === 'list') {
-        const branches = await git.branch({ fs, dir: path });
+        const branches = await git.listBranches({ fs, dir: path });
         return { success: true, output: branches };
       } else if (action === 'create') {
         if (!branch) return { success: false, error: 'Branch name required for create' };
@@ -146,7 +174,7 @@ export const gitBranchTool: Tool = {
         return { success: true, output: `Branch ${branch} created` };
       } else if (action === 'delete') {
         if (!branch) return { success: false, error: 'Branch name required for delete' };
-        await git.branch({ fs, dir: path, ref: branch, delete: true });
+        await git.deleteBranch({ fs, dir: path, ref: branch });
         return { success: true, output: `Branch ${branch} deleted` };
       }
       return { success: false, error: 'Invalid action' };
@@ -168,7 +196,7 @@ export const gitStatusTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { path } = args;
+      const { path } = args as { path: string };
       const status = await git.statusMatrix({ fs, dir: path });
       return { success: true, output: status };
     } catch (err) {

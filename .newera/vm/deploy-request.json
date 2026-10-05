@@ -1,0 +1,7 @@
+{
+  "subdomain": "vfs-agent",
+  "mode": "permanent",
+  "build_output": "vfs-agent/out",
+  "job": "vm-muv5uvlf-salgc8wy",
+  "at": "2026-10-05T12:14:46.545Z"
+}

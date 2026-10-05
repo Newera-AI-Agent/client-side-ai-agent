@@ -50,7 +50,7 @@ export const webFetchTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { url, headers = {} } = args;
+      const { url, headers = {} } = args as { url: string; headers?: Record<string, string> };
       const response = await fetch(url, { headers });
       const contentType = response.headers.get('content-type') || '';
       

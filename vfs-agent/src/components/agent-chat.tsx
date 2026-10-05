@@ -8,7 +8,7 @@ import { cn, formatDate } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@radix-ui/react-scroll-area'
-import { Send, Loader2, Bot, User, Terminal, Brain, Eye, ChevronDown } from 'lucide-react'
+import { Send, Loader2, Terminal, Brain, Eye, ChevronDown } from 'lucide-react'
 
 export function AgentChat() {
   const [input, setInput] = useState('')

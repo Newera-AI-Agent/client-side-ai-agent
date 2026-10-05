@@ -13,6 +13,10 @@ interface TerminalOutput {
   timestamp: number
 }
 
+interface TerminalWindow extends Window {
+  terminalAddOutput?: (type: TerminalOutput['type'], content: string) => void
+}
+
 export function Terminal() {
   const [outputs, setOutputs] = useState<TerminalOutput[]>([])
   const [input, setInput] = useState('')
@@ -47,8 +51,9 @@ ${formatDate(o.timestamp)} [${o.type}] ${o.content}`).join('')
 
   // Expose addOutput globally for tools to use
   useEffect(() => {
-    (window as any).terminalAddOutput = addOutput
-    return () => { delete (window as any).terminalAddOutput }
+    const win = window as TerminalWindow
+    win.terminalAddOutput = addOutput
+    return () => { delete win.terminalAddOutput }
   }, [])
 
   return (
@@ -120,7 +125,8 @@ ${formatDate(o.timestamp)} [${o.type}] ${o.content}`).join('')
 
 // Helper to add output from anywhere
 export function addTerminalOutput(type: TerminalOutput['type'], content: string) {
-  if ((window as any).terminalAddOutput) {
-    (window as any).terminalAddOutput(type, content)
+  const win = window as TerminalWindow
+  if (win.terminalAddOutput) {
+    win.terminalAddOutput(type, content)
   }
 }

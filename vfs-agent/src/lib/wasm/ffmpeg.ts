@@ -67,7 +67,7 @@ export const runFFmpegTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { arguments: ffmpegArgs, inputFiles = [], outputFiles = [] } = args;
+      const { arguments: ffmpegArgs, inputFiles = [], outputFiles = [] } = args as { arguments: string[]; inputFiles: Array<{ name: string; data: string }>; outputFiles: string[] };
       const ff = await getFFmpeg();
       
       // Write input files to FFmpeg virtual filesystem
@@ -90,7 +90,15 @@ export const runFFmpegTool: Tool = {
           const data = await ff.readFile(outputName);
           // Convert to base64
           let binary = '';
-          const bytes = new Uint8Array(data);
+          let bytes: Uint8Array;
+          if (typeof data === 'string') {
+            bytes = new Uint8Array(data.length);
+            for (let i = 0; i < data.length; i++) {
+              bytes[i] = data.charCodeAt(i);
+            }
+          } else {
+            bytes = new Uint8Array(data);
+          }
           for (let i = 0; i < bytes.byteLength; i++) {
             binary += String.fromCharCode(bytes[i]);
           }

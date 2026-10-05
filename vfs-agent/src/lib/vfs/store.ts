@@ -135,7 +135,7 @@ export const useVFSStore = create<VFSStore>()(
       }),
       onRehydrateStorage: () => (state) => {
         if (state) {
-          state.openFiles = new Map(state.openFiles as any);
+          state.openFiles = new Map(state.openFiles as Iterable<readonly [string, VFSNode]>);
         }
       },
     }

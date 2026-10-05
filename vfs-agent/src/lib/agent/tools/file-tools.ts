@@ -18,7 +18,7 @@ export const writeFileTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { path, content } = args;
+      const { path, content } = args as { path: string; content: string };
       const parentPath = path.substring(0, path.lastIndexOf('/')) || '/';
       const fileName = path.substring(path.lastIndexOf('/') + 1);
       const store = getStore();
@@ -50,7 +50,7 @@ export const readFileTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { path } = args;
+      const { path } = args as { path: string };
       const store = getStore();
       const node = store.readFile(path);
       if (!node) {
@@ -80,7 +80,7 @@ export const editFileTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { path, oldString, newString } = args;
+      const { path, oldString, newString } = args as { path: string; oldString: string; newString: string };
       const store = getStore();
       const node = store.readFile(path);
       if (!node || node.type !== 'file') {
@@ -111,7 +111,7 @@ export const deleteFileTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { path } = args;
+      const { path } = args as { path: string };
       const store = getStore();
       const result = store.deleteNode(path);
       if (result) {
@@ -137,7 +137,7 @@ export const moveFileTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { srcPath, destPath } = args;
+      const { srcPath, destPath } = args as { srcPath: string; destPath: string };
       const store = getStore();
       const result = store.moveNode(srcPath, destPath);
       if (result) {
@@ -162,7 +162,7 @@ export const listFilesTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { path = '/' } = args;
+      const { path = '/' } = args as { path?: string };
       const store = getStore();
       const nodes = store.listDirectory(path);
       return {

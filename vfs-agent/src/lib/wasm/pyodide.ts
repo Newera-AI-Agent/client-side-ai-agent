@@ -1,8 +1,9 @@
 import { Tool, ToolResult } from '@/lib/agent/types';
+import type { PyodideInterface } from 'pyodide';
 
-let pyodide: any = null;
+let pyodide: PyodideInterface | null = null;
 let isLoading = false;
-let loadPromise: Promise<any> | null = null;
+let loadPromise: Promise<PyodideInterface> | null = null;
 
 async function getPyodide() {
   if (pyodide) return pyodide;
@@ -45,7 +46,7 @@ export const runPythonTool: Tool = {
   },
   execute: async (args): Promise<ToolResult> => {
     try {
-      const { code, packages = [] } = args;
+      const { code, packages = [] } = args as { code: string; packages?: string[] };
       const py = await getPyodide();
       
       // Install additional packages if needed

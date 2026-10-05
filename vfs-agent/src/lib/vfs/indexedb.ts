@@ -57,7 +57,7 @@ export async function clearVFS(): Promise<void> {
 
 export async function setMetadata(key: string, value: { version: number; lastSync: number }): Promise<void> {
   const db = await getDB();
-  await db.put('metadata', { key, version: value.version, lastSync: value.lastSync });
+  await db.put('metadata', { version: value.version, lastSync: value.lastSync }, key);
 }
 
 export async function getMetadata(key: string): Promise<{ version: number; lastSync: number } | undefined> {

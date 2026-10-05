@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { VFSExplorer } from './vfs-explorer'
 import { MonacoEditor } from './monaco-editor'
 import { AgentChat } from './agent-chat'
@@ -21,6 +21,22 @@ interface LayoutState {
   showTerminal: boolean
 }
 
+const Resizer = ({ vertical, onMouseDown }: { vertical: boolean; onMouseDown: (e: React.MouseEvent) => void }) => (
+  <div
+    className={cn(
+      'relative flex items-center justify-center bg-border/50 hover:bg-border transition-colors',
+      vertical ? 'w-1 cursor-col-resize' : 'h-1 cursor-row-resize'
+    )}
+    onMouseDown={onMouseDown}
+  >
+    {vertical ? (
+      <div className="w-px h-8 bg-border/50" />
+    ) : (
+      <div className="w-8 h-px bg-border/50" />
+    )}
+  </div>
+)
+
 export function MainLayout() {
   const [layout, setLayout] = useState<LayoutState>({
     explorerWidth: 280,
@@ -34,7 +50,7 @@ export function MainLayout() {
   const { activeFileId, openFiles, closeFile, setActiveFile, root } = useVFSStore()
   const activeFile = activeFileId ? openFiles.get(activeFileId) || null : null
 
-  const handleExplorerResize = (e: React.MouseEvent) => {
+  const handleExplorerResize = useCallback((e: React.MouseEvent) => {
     const startX = e.clientX
     const startWidth = layout.explorerWidth
     
@@ -50,9 +66,9 @@ export function MainLayout() {
     
     document.addEventListener('mousemove', handleMove)
     document.addEventListener('mouseup', handleUp)
-  }
+  }, [layout.explorerWidth])
 
-  const handleChatResize = (e: React.MouseEvent) => {
+  const handleChatResize = useCallback((e: React.MouseEvent) => {
     const startX = e.clientX
     const startWidth = layout.chatWidth
     
@@ -68,9 +84,9 @@ export function MainLayout() {
     
     document.addEventListener('mousemove', handleMove)
     document.addEventListener('mouseup', handleUp)
-  }
+  }, [layout.chatWidth])
 
-  const handleTerminalResize = (e: React.MouseEvent) => {
+  const handleTerminalResize = useCallback((e: React.MouseEvent) => {
     const startY = e.clientY
     const startHeight = layout.terminalHeight
     
@@ -86,23 +102,7 @@ export function MainLayout() {
     
     document.addEventListener('mousemove', handleMove)
     document.addEventListener('mouseup', handleUp)
-  }
-
-  const Resizer = ({ vertical, onMouseDown }: { vertical: boolean; onMouseDown: (e: React.MouseEvent) => void }) => (
-    <div
-      className={cn(
-        'relative flex items-center justify-center bg-border/50 hover:bg-border transition-colors',
-        vertical ? 'w-1 cursor-col-resize' : 'h-1 cursor-row-resize'
-      )}
-      onMouseDown={onMouseDown}
-    >
-      {vertical ? (
-        <div className="w-px h-8 bg-border/50" />
-      ) : (
-        <div className="w-8 h-px bg-border/50" />
-      )}
-    </div>
-  )
+  }, [layout.terminalHeight])
 
   return (
     <div className="flex h-[calc(100vh-60px)] bg-background">

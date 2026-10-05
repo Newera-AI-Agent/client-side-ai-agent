@@ -19,7 +19,7 @@ class ToolRegistryImpl implements ToolRegistry {
     return Array.from(this.tools.values());
   }
 
-  async execute(name: string, args: Record<string, any>): Promise<ToolResult> {
+  async execute(name: string, args: Record<string, unknown>): Promise<ToolResult> {
     const tool = this.tools.get(name);
     if (!tool) {
       return { success: false, error: `Tool not found: ${name}` };

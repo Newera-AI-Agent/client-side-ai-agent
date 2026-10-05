@@ -117,4 +117,8 @@ export const fs = {
       mtime: new Date(node.updatedAt),
     };
   },
+
+  async stat(path: string): Promise<{ isFile(): boolean; isDirectory(): boolean; size: number; mtime: Date }> {
+    return this.lstat(path);
+  },
 };

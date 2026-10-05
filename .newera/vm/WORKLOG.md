@@ -14,3 +14,16 @@ Durable session memory for this VM job chain. Each line is one step or wind-down
 - [2026-10-05T11:16:03.802Z | VM 1/3] boot: VM 1/3 online (job vm-muv5lumk-6cttj9y1, 120 min budget)
 - [2026-10-05T11:16:03.802Z | VM 1/3] self-check PASS: shell: VERIFIED (the harness executed bash on this VM at boot); node: v24.21.0; npm: 11.19.0; python3: Python 3.12.3; git: repo checked out @ f728227; filesystem: WRITABLE (the harness wrote + read back a probe file); skills: 22 knowledge docs in .newera/skills/ (list_skills / read_skill)
 - [2026-10-05T11:20:05.053Z | VM 1/3] ABORT (protocol violations x3) at step 14 — handoff written for resume.
+- [2026-10-05T11:23:03.048Z | VM 1/3] boot: VM 1/3 online (job vm-muv5uvlf-salgc8wy, 120 min budget)
+- [2026-10-05T11:23:03.049Z | VM 1/3] self-check PASS: shell: VERIFIED (the harness executed bash on this VM at boot); node: v24.21.0; npm: 11.19.0; python3: Python 3.12.3; git: repo checked out @ 3364565; filesystem: WRITABLE (the harness wrote + read back a probe file); skills: 22 knowledge docs in .newera/skills/ (list_skills / read_skill)
+- [2026-10-05T11:35:31.586Z | VM 1/3] VERIFIED green: cd vfs-agent && npx next build 2>&1 | cat
+- [2026-10-05T11:35:58.777Z | VM 1/3] VERIFIED green: cd vfs-agent && npx next build 2>&1 | cat
+- [2026-10-05T11:37:30.967Z | VM 1/3] PLAN updated: 2 steps
+- [2026-10-05T11:53:14.240Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build 2>&1 | tail -20
+- [2026-10-05T11:59:58.417Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build 2>&1 | tail -30
+- [2026-10-05T12:04:24.252Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build 2>&1 | tail -30
+- [2026-10-05T12:07:24.687Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build 2>&1 | cat
+- [2026-10-05T12:07:44.589Z | VM 1/3] PLAN updated: 5 steps
+- [2026-10-05T12:09:19.603Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build 2>&1 | tail -20
+- [2026-10-05T12:59:45.603Z | VM 1/3] VERIFIED green: cd vfs-agent && npm run build 2>&1 | tail -30
+- [2026-10-05T13:02:27.547Z | VM 1/3] RELAY checkpoint at step 371 — handoff committed, VM 2 continues.
