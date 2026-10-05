@@ -1,0 +1,186 @@
+{
+  "originalRequest": "Build a client-side AI agent in Next.js (App Router) that can:\n\n1. **Core Agent Loop**: Implement a ReAct-style agent that can reason, plan, and execute file operations in a virtual filesystem (VFS). The agent should accept a natural language task and autonomously create/modify files to complete it.\n\n2. **Virtual File System (VFS)**: Full client-side VFS with:\n   - Directory/file tree structure (create, read, write, delete, move, list)\n   - In-memory persistence with IndexedDB backup\n   - File content editing with syntax highlighting\n   - Drag-and-drop file upload/download\n   - ZIP import/export\n\n3. **WASM Tool Integration**: Bundle and expose client-side WASM runtimes:\n   - Python (Pyodide) for data processing, scripting\n   - SQLite (sql.js) for structured data\n   - FFmpeg.wasm for media processing\n   - Git (isomorphic-git) for version control\n   - Each tool callable from the agent via a unified tool registry\n\n4. **Agent Capabilities**:\n   - File operations: write_file, read_file, edit_file, delete_file, move_file, list_files\n   - Code execution: run_python, run_sql, run_ffmpeg\n   - Version control: git init, add, commit, log, diff, branch\n   - Web search and fetch (via proxy/API)\n   - Image generation placeholder\n\n5. **UI/UX**:\n   - Split-pane layout: chat/agent panel + VFS explorer + file editor + terminal/output\n   - Monaco Editor for code editing with TS/JS/HTML/CSS/Python/SQL support\n   - Real-time agent reasoning display (thought/action/observation)\n   - File tree with context menus\n   - Live preview iframe for generated sites\n   - Dark/light theme with modern design (style-clean or style-professional)\n\n6. **Technical Stack**:\n   - Next.js 14+ App Router, TypeScript, React 18\n   - Tailwind CSS + shadcn/ui components\n   - Monaco Editor (@monaco-editor/react)\n   - Pyodide, sql.js, @ffmpeg/ffmpeg, isomorphic-git via dynamic imports\n   - IndexedDB (idb) for persistence\n   - Zustand for state management\n\n7. **Quality Bar**:\n   - TypeScript strict mode, ESLint, Prettier\n   - No console errors in production build\n   - Responsive down to 768px\n   - Accessible (keyboard nav, ARIA labels, contrast)\n   - Build passes on GitHub Actions\n   - Deployable to Cloudflare Pages (static export)\n\n8. **Deliverables**:\n   - Working Next.js app at vfs-agent.newera.page.dev\n   - Agent can create a complete multi-page site (index.html, styles.css, app.js) from a prompt like \"make a todo app\"\n   - All WASM tools load and execute in browser\n   - VFS persists across reloads\n   - Clean git history with meaningful commits",
+  "normalizedInterpretation": "Build a client-side AI agent in Next.js (App Router) that can:; Core Agent Loop**: Implement a ReAct-style agent that can reason, plan, and execute file operations in a virtual filesystem (VFS).; The agent should accept a natural language task and autonomously create/modify files to complete it.; Virtual File System (VFS)**: Full client-side VFS with:; Directory/file tree structure (create, read, write, delete, move, list); In-memory persistence with IndexedDB backup; File content editing with syntax highlighting; Drag-and-drop file upload/download; ZIP import/export; WASM Tool Integration**: Bundle and expose client-side WASM runtimes:; Python (Pyodide) for data processing, scripting; SQLite (sql.js) for structured data; FFmpeg.wasm for media processing; Git (isomorphic-git) for version control; Each tool callable from the agent via a unified tool registry; Agent Capabilities**:; File operations: write_file, read_file, edit_file, delete_file, move_file, list_files; Code execution: run_python, run_sql, run_ffmpeg; Version control: git init, add, commit, log, diff, branch; Web search and fetch (via proxy/API)",
+  "assumptions": [],
+  "profile": "marathon",
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "description": "Build a client-side AI agent in Next.js (App Router) that can:",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "A relevant build or static verification passed after the latest relevant edit."
+    },
+    {
+      "id": "REQ-002",
+      "description": "Core Agent Loop**: Implement a ReAct-style agent that can reason, plan, and execute file operations in a virtual filesystem (VFS).",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "The requested file or implementation exists and its relevant contents were inspected."
+    },
+    {
+      "id": "REQ-003",
+      "description": "The agent should accept a natural language task and autonomously create/modify files to complete it.",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
+    },
+    {
+      "id": "REQ-004",
+      "description": "Virtual File System (VFS)**: Full client-side VFS with:",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "The requested file or implementation exists and its relevant contents were inspected."
+    },
+    {
+      "id": "REQ-005",
+      "description": "Directory/file tree structure (create, read, write, delete, move, list)",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "The requested file or implementation exists and its relevant contents were inspected."
+    },
+    {
+      "id": "REQ-006",
+      "description": "In-memory persistence with IndexedDB backup",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
+    },
+    {
+      "id": "REQ-007",
+      "description": "File content editing with syntax highlighting",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "The requested file or implementation exists and its relevant contents were inspected."
+    },
+    {
+      "id": "REQ-008",
+      "description": "Drag-and-drop file upload/download",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "The requested file or implementation exists and its relevant contents were inspected."
+    },
+    {
+      "id": "REQ-009",
+      "description": "ZIP import/export",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
+    },
+    {
+      "id": "REQ-010",
+      "description": "WASM Tool Integration**: Bundle and expose client-side WASM runtimes:",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
+    },
+    {
+      "id": "REQ-011",
+      "description": "Python (Pyodide) for data processing, scripting",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
+    },
+    {
+      "id": "REQ-012",
+      "description": "SQLite (sql.js) for structured data",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
+    },
+    {
+      "id": "REQ-013",
+      "description": "FFmpeg.wasm for media processing",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
+    },
+    {
+      "id": "REQ-014",
+      "description": "Git (isomorphic-git) for version control",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
+    },
+    {
+      "id": "REQ-015",
+      "description": "Each tool callable from the agent via a unified tool registry",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
+    },
+    {
+      "id": "REQ-016",
+      "description": "Agent Capabilities**:",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
+    },
+    {
+      "id": "REQ-017",
+      "description": "File operations: write_file, read_file, edit_file, delete_file, move_file, list_files",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "The requested file or implementation exists and its relevant contents were inspected."
+    },
+    {
+      "id": "REQ-018",
+      "description": "Code execution: run_python, run_sql, run_ffmpeg",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
+    },
+    {
+      "id": "REQ-019",
+      "description": "Version control: git init, add, commit, log, diff, branch",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
+    },
+    {
+      "id": "REQ-020",
+      "description": "Web search and fetch (via proxy/API)",
+      "mandatory": true,
+      "status": "pending",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
+    }
+  ],
+  "featureMatrix": [
+    "Build a client-side AI agent in Next.js (App Router) that can:",
+    "Core Agent Loop**: Implement a ReAct-style agent that can reason, plan, and execute file operations in a virtual filesystem (VFS).",
+    "The agent should accept a natural language task and autonomously create/modify files to complete it.",
+    "Virtual File System (VFS)**: Full client-side VFS with:",
+    "Directory/file tree structure (create, read, write, delete, move, list)",
+    "In-memory persistence with IndexedDB backup",
+    "File content editing with syntax highlighting",
+    "Drag-and-drop file upload/download",
+    "ZIP import/export",
+    "WASM Tool Integration**: Bundle and expose client-side WASM runtimes:",
+    "Python (Pyodide) for data processing, scripting",
+    "SQLite (sql.js) for structured data",
+    "FFmpeg.wasm for media processing",
+    "Git (isomorphic-git) for version control",
+    "Each tool callable from the agent via a unified tool registry",
+    "Agent Capabilities**:",
+    "File operations: write_file, read_file, edit_file, delete_file, move_file, list_files",
+    "Code execution: run_python, run_sql, run_ffmpeg",
+    "Version control: git init, add, commit, log, diff, branch",
+    "Web search and fetch (via proxy/API)"
+  ],
+  "contentMatrix": [],
+  "assetManifest": [],
+  "audioManifest": [],
+  "testMatrix": [
+    "Build a client-side AI agent in Next.js (App Router) that can:"
+  ],
+  "artifactMatrix": [
+    "Downloadable project archive"
+  ],
+  "platformRequirements": [
+    "Web"
+  ],
+  "permissions": [],
+  "deferredItems": [],
+  "createdAt": 1791196423492,
+  "updatedAt": 1791196423492
+}
